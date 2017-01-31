@@ -18,7 +18,7 @@ import webapp2
 import cgi
 import re
 
-form1="""
+signup_form="""
 <!DOCTYPE html>
 <html>
   <head>
@@ -55,7 +55,7 @@ form1="""
 </html>
 """
 
-form2="""
+welcome_form="""
 <!DOCTYPE html>
 <html>
 	<head>
@@ -92,7 +92,7 @@ def match_pass(p1, p2):
 class Signup(webapp2.RequestHandler):
 	def write_form(self, username="", email="",
 		           e_name="", e_pass="", e_verify="", e_email=""):
-		self.response.out.write(form1 % {"username": escape_html(username),
+		self.response.out.write(signup_form % {"username": escape_html(username),
 			                             "email": escape_html(email),
 			                             "e_name": e_name,
 			                             "e_pass": e_pass,
@@ -135,7 +135,7 @@ class Signup(webapp2.RequestHandler):
 class WelcomeHandler(webapp2.RequestHandler):
 	def get(self):
 		username = self.request.get('username')
-		self.response.out.write(form2 % username)
+		self.response.out.write(welcome_form % username)
 
 app = webapp2.WSGIApplication([
 	('/', Signup),
