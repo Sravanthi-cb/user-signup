@@ -127,7 +127,7 @@ class Signup(webapp2.RequestHandler):
 		if not email:
 			e_email = "That's not a valid email"
 
-		if password and (not e_verify) and name:
+		if password and (not e_verify) and name and email:
 			self.redirect('/welcome?username=%s' % user_name)
 		else:
 			self.write_form(user_name, user_email, e_name, e_pass, e_verify, e_email)
